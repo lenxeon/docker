@@ -1,13 +1,20 @@
-version: '2'
+nginx:
+  build: ./nginx-node/
+  ports:
+    - "10080:80"
+  # restart: always
+  # command: /usr/local/server/openresty/nginx/sbin/nginx && while true;do sleep 60;done
 
-services:
-  nginx:
-    # restart: always
-    hostname: app-01
-    image: dev/base:latest
-    # ports:
-    # - "2022:22"
-    # command:
-    # - /usr/local/server/openresty/nginx/sbin/nginx
-    # volumes:
-    # - /www:/usr/share/nginx/html:ro
+tomcat_01:
+  build: ./tomcat-node/
+  # ports:
+  #   - "10080:80"
+  # restart: always
+  # command: /usr/local/server/openresty/nginx/sbin/nginx && while true;do sleep 60;done
+
+tomcat_02:
+  build: ./tomcat-node/
+  # ports:
+  #   - "10080:80"
+  # restart: always
+  # command: /usr/local/server/openresty/nginx/sbin/nginx && while true;do sleep 60;done

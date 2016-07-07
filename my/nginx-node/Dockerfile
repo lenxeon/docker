@@ -21,3 +21,9 @@ RUN yum install -y readline-devel pcre-devel openssl-devel gcc make perl postgre
 
 RUN echo '====================================sshd============================================'
 RUN yum install -y openssh-server
+
+ADD www/ /etc/nginx/sites-enabled
+
+CMD cd /usr/local/server/openresty/nginx/ \
+  && sbin/nginx \
+  && tail -f logs/access.log
