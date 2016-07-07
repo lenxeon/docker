@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  nginx:
+    # restart: always
+    hostname: app-01
+    image: dev/base:latest
+    # ports:
+    # - "2022:22"
+    # command:
+    # - /usr/local/server/openresty/nginx/sbin/nginx
+    # volumes:
+    # - /www:/usr/share/nginx/html:ro
