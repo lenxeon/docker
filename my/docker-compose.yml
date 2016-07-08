@@ -1,31 +1,9 @@
-nginx:
-  build: ./nginx-node/
-  ports:
-    - "10080:80"
-  links:
-    - tomcat_01
-    - tomcat_02
-  # restart: always
-  # command: /usr/local/server/openresty/nginx/sbin/nginx && while true;do sleep 60;done
-
-tomcat_01:
-  build: ./tomcat-node/
-  # ports:
-  #   - "10080:80"
-  restart: always
-  # command: /usr/local/server/openresty/nginx/sbin/nginx && while true;do sleep 60;done
-
-tomcat_02:
-  build: ./tomcat-node/
-  # ports:
-  #   - "10080:80"
-  restart: always
-  # command: /usr/local/server/openresty/nginx/sbin/nginx && while true;do sleep 60;done
-
 # MySQL database shared with tomcat containers.
-db:
+mysql:
   image: mysql:latest
   restart: always
+  ports:
+    - "13306:3306"
   environment:
     MYSQL_ROOT_PASSWORD: admin
     MYSQL_DATABASE: db_apps
@@ -67,5 +45,41 @@ rabbit_03:
   environment:
    - CLUSTERED=true
    - CLUSTER_WITH=rabbit_01
+   - RAM_NODE=true
   ports:
         - "5674:5672"
+
+
+tomcat_01:
+  build: ./tomcat-node/
+  # ports:
+  #   - "10080:80"
+  # depends_on:
+  #   - mysql
+    # - rabbit_01
+    # - rabbit_02
+    # - rabbit_03
+  restart: always
+  # command: /usr/local/server/openresty/nginx/sbin/nginx && while true;do sleep 60;done
+
+tomcat_02:
+  build: ./tomcat-node/
+  # ports:
+  #   - "10080:80"
+  # depends_on:
+  #   - mysql
+    # - rabbit_01
+    # - rabbit_02
+    # - rabbit_03
+  restart: always
+  # command: /usr/local/server/openresty/nginx/sbin/nginx && while true;do sleep 60;done
+
+nginx:
+  build: ./nginx-node/
+  ports:
+    - "10080:80"
+  links:
+    - tomcat_01
+    - tomcat_02
+  # restart: always
+  # command: /usr/local/server/openresty/nginx/sbin/nginx && while true;do sleep 60;done
