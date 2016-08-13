@@ -23,6 +23,7 @@ else
 		rabbitmqctl start_app
 
 		# Tail to keep the a foreground process active..
-		tail -f /var/log/rabbitmq/rabbit\@$HOSTNAME.log
+		top
+		#tail -f /var/log/rabbitmq/rabbit\@$HOSTNAME.log
 	fi
 fi
