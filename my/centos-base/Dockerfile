@@ -1,4 +1,4 @@
-FROM centos
+FROM centos:latest
 
 MAINTAINER workin.me lenxeon lenxeon@163.com
 
