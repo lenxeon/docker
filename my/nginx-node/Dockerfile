@@ -1,9 +1,8 @@
-FROM centos
+FROM dev/base
 
 MAINTAINER workin.me lenxeon lenxeon@163.com
 
-RUN echo '====================================准备============================================'
-RUN yum install -y wget
+
 #openresty
 RUN echo '====================================下载============================================'
 RUN yum install -y readline-devel pcre-devel openssl-devel gcc make perl postgresql-devel\
@@ -18,9 +17,6 @@ RUN yum install -y readline-devel pcre-devel openssl-devel gcc make perl postgre
             --with-http_iconv_module \
             --with-http_postgres_module\
  && make && make install
-
-RUN echo '====================================sshd============================================'
-RUN yum install -y openssh-server
 
 ADD www/ /etc/nginx/sites-enabled
 

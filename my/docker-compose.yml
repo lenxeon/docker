@@ -1,85 +1,123 @@
-# MySQL database shared with tomcat containers.
-mysql:
-  # image: mysql:latest
-  build: ./db/
-  restart: always
-  ports:
-    - "13306:3306"
-  environment:
-    MYSQL_ROOT_PASSWORD: admin
-    MYSQL_DATABASE: db_apps
-    MYSQL_USER: root
-    MYSQL_PASSWORD: admin
-  volumes:
-    - "./db:/docker-entrypoint-initdb.d"
+version: '2'
 
-# # rabbit database shared with tomcat containers.
-# rabbit_01:
-#   # image: bijukunjummen/rabbitmq-server
-#   build: ./rabbit-mq-node/
-#   hostname: rabbit_01
-#   ports:
-#     - "5672:5672"
-#     - "15672:15672"
-#
-# rabbit_02:
-#   # image: bijukunjummen/rabbitmq-server
-#   build: ./rabbit-mq-node/
-#   hostname: rabbit_02
-#   links:
-#     - rabbit_01
-#   environment:
-#    - CLUSTERED=true
-#    - CLUSTER_WITH=rabbit_01
-#    - RAM_NODE=true
-#   ports:
-#       - "5673:5672"
-#       - "15673:15672"
-#
-# rabbit_03:
-#   # image: bijukunjummen/rabbitmq-server
-#   build: ./rabbit-mq-node/
-#   hostname: rabbit_03
-#   links:
-#     - rabbit_01
-#     - rabbit_02
-#   environment:
-#    - CLUSTERED=true
-#    - CLUSTER_WITH=rabbit_01
-#    - RAM_NODE=true
-#   ports:
-#         - "5674:5672"
+services:
+  # MySQL database shared with tomcat containers.
+  # mysql:
+  #   # image: mysql:latest
+  #   build: ./db/
+  #   restart: always
+  #   ports:
+  #     - "13306:3306"
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: admin
+  #     MYSQL_DATABASE: db_apps
+  #     MYSQL_USER: root
+  #     MYSQL_PASSWORD: admin
+  #   volumes:
+  #     - "./db:/docker-entrypoint-initdb.d"
 
-tomcat_01:
-  build: ./tomcat-node/
-  # ports:
-  #   - "10080:80"
-  # depends_on:
-  #   - mysql
-    # - rabbit_01
-    # - rabbit_02
-    # - rabbit_03
-  restart: always
-  # command: /usr/local/server/openresty/nginx/sbin/nginx && while true;do sleep 60;done
+  # # rabbit database shared with tomcat containers.
+  # rabbit_01:
+  #   # image: bijukunjummen/rabbitmq-server
+  #   build: ./rabbit-mq-node/
+  #   hostname: rabbit_01
+  #   ports:
+  #     - "5672:5672"
+  #     - "15672:15672"
+  #
+  # rabbit_02:
+  #   # image: bijukunjummen/rabbitmq-server
+  #   build: ./rabbit-mq-node/
+  #   hostname: rabbit_02
+  #   links:
+  #     - rabbit_01
+  #   environment:
+  #    - CLUSTERED=true
+  #    - CLUSTER_WITH=rabbit_01
+  #    - RAM_NODE=true
+  #   ports:
+  #       - "5673:5672"
+  #       - "15673:15672"
+  #
+  # rabbit_03:
+  #   # image: bijukunjummen/rabbitmq-server
+  #   build: ./rabbit-mq-node/
+  #   hostname: rabbit_03
+  #   links:
+  #     - rabbit_01
+  #     - rabbit_02
+  #   environment:
+  #    - CLUSTERED=true
+  #    - CLUSTER_WITH=rabbit_01
+  #    - RAM_NODE=true
+  #   ports:
+  #         - "5674:5672"
 
-tomcat_02:
-  build: ./tomcat-node/
-  # ports:
-  #   - "10080:80"
-  # depends_on:
-  #   - mysql
-    # - rabbit_01
-    # - rabbit_02
-    # - rabbit_03
-  restart: always
-  # command: /usr/local/server/openresty/nginx/sbin/nginx && while true;do sleep 60;done
+## zk 服务
+  redis:
+    build: ./redis/
+    restart: always
+    # ports:
+    #   - "12181:2181"
 
-nginx:
-  build: ./nginx-node/
-  ports:
-    - "10080:80"
-  links:
-    - tomcat_01
-    - tomcat_02
-  # restart: always
-  # command: /usr/local/server/openresty/nginx/sbin/nginx && while true;do sleep 60;done
+## zk 服务
+  memcached:
+    build: ./memcached/
+    restart: always
+    # ports:
+    #   - "12181:2181"
+## zk 服务
+  zookeeper:
+    build: ./zookeeper/
+    restart: always
+    ports:
+      - "12181:2181"
+
+  dev-id:
+    # image: dev/id
+    build: ./id-service/
+    depends_on:
+      - redis
+      - memcached
+      - zookeeper
+    restart: always
+    environment:
+      - ZOOKEEPER_HOST=zookeeper:2181
+      - ZOOKEEPER_GROUP=/apps/config
+      - ZOOKEEPER_VERSION=1.0.002
+
+
+  # tomcat_01:
+  #   build: ./tomcat-node/
+  #   # ports:
+  #   #   - "10080:80"
+  #   depends_on:
+  #     - mysql
+  #     - zookeeper
+  #     # - rabbit_01
+  #     # - rabbit_02
+  #     # - rabbit_03
+  #   restart: always
+    # command: /usr/local/server/openresty/nginx/sbin/nginx && while true;do sleep 60;done
+
+  # tomcat_02:
+  #   build: ./tomcat-node/
+  #   # ports:
+  #   #   - "10080:80"
+  #   # depends_on:
+  #   #   - mysql
+  #     # - rabbit_01
+  #     # - rabbit_02
+  #     # - rabbit_03
+  #   restart: always
+  #   # command: /usr/local/server/openresty/nginx/sbin/nginx && while true;do sleep 60;done
+  #
+  # nginx:
+  #   build: ./nginx-node/
+  #   ports:
+  #     - "10080:80"
+  #   links:
+  #     - tomcat_01
+  #     - tomcat_02
+    # restart: always
+    # command: /usr/local/server/openresty/nginx/sbin/nginx && while true;do sleep 60;done
