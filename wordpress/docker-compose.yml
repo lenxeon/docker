@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+  ## MySQL database shared with tomcat containers.
+  mysql:
+    image: mysql:latest
+    # build: ./db/
+    restart: always
+    ports:
+      - "13306:3306"
+    environment:
+      MYSQL_DATABASE: db_wordpress
+      # MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: Sample09X#
+      # MYSQL_PASSWORD: Sample09X#
+    volumes:
+      - ./db/sql/:/docker-entrypoint-initdb.d/:Z
+    # command: chmod +x /init/*.sh && /init/mysql-init.sh
+
+  wordpress:
+      image: "wordpress:latest"
+      ports:
+          - "8099:80"
+      depends_on:
+        - mysql
+      environment:
+        MYSQL_DATABASE: db_wordpress
+        WORDPRESS_DB_USER: root
+        WORDPRESS_DB_NAME: db_wordpress
+        WORDPRESS_DB_PASSWORD: Sample09X#

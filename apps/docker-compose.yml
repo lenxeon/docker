@@ -1,0 +1,104 @@
+version: '2'
+
+services:
+  ## MySQL database shared with tomcat containers.
+  mysql:
+    image: mysql:latest
+    # build: ./db/
+    restart: always
+    ports:
+      - "13306:3306"
+    environment:
+      MYSQL_DATABASE: db_apps
+      # MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: Sample09X#
+      # MYSQL_PASSWORD: Sample09X#
+    volumes:
+      - ./db/sql/:/docker-entrypoint-initdb.d/:Z
+    # command: chmod +x /init/*.sh && /init/mysql-init.sh
+
+  ## redis 服务
+  redis:
+    build: ./redis/
+    restart: always
+    # ports:
+    #   - "12181:2181"
+
+  ## memcached 服务
+  memcached:
+    build: ./memcached/
+    restart: always
+    # ports:
+    #   - "12181:2181"
+
+  ## zookeeper 服务
+  zookeeper:
+    build: ./zookeeper/
+    restart: always
+    ports:
+      - "12181:2181"
+
+  dev-id:
+    # image: dev/id
+    build: ./id-service/
+    depends_on:
+      - redis
+      - memcached
+      - zookeeper
+    restart: always
+    environment:
+      - ZOOKEEPER_HOST=zookeeper:2181
+      - ZOOKEEPER_GROUP=/apps/config
+      - ZOOKEEPER_VERSION=1.0.002
+    command: java -jar /app-commons-provider-1.0-SNAPSHOT/app-commons-provider-1.0-SNAPSHOT.jar
+
+  dev-id-web:
+    # image: dev/id
+    build: ./id-web/
+    ports:
+      - "18080:8080"
+    depends_on:
+      - redis
+      - memcached
+      - zookeeper
+    restart: always
+    environment:
+      - ZOOKEEPER_HOST=zookeeper:2181
+      - ZOOKEEPER_GROUP=/apps/config
+      - ZOOKEEPER_VERSION=1.0.002
+
+
+  # tomcat_01:
+  #   build: ./tomcat-node/
+  #   # ports:
+  #   #   - "10080:80"
+  #   depends_on:
+  #     - mysql
+  #     - zookeeper
+  #     # - rabbit_01
+  #     # - rabbit_02
+  #     # - rabbit_03
+  #   restart: always
+    # command: /usr/local/server/openresty/nginx/sbin/nginx && while true;do sleep 60;done
+
+  # tomcat_02:
+  #   build: ./tomcat-node/
+  #   # ports:
+  #   #   - "10080:80"
+  #   # depends_on:
+  #   #   - mysql
+  #     # - rabbit_01
+  #     # - rabbit_02
+  #     # - rabbit_03
+  #   restart: always
+  #   # command: /usr/local/server/openresty/nginx/sbin/nginx && while true;do sleep 60;done
+  #
+  # nginx:
+  #   build: ./nginx-node/
+  #   ports:
+  #     - "10080:80"
+  #   links:
+  #     - tomcat_01
+  #     - tomcat_02
+    # restart: always
+    # command: /usr/local/server/openresty/nginx/sbin/nginx && while true;do sleep 60;done
