@@ -2,7 +2,7 @@ FROM dev/base
 
 MAINTAINER workin.me lenxeon lenxeon@163.com
 
-ADD ./app-commons-provider.tar.gz /
+#ADD ./app-commons-provider.tar.gz /
 
 # ENV zookeeper.host zookeeper:2181
 # ENV zookeeper.group /apps/config

@@ -14,7 +14,7 @@ RUN echo '====================================tomcat============================
 # ENV PATH $PATH:$CATALINA_HOME/bin
 
 
-ADD ucenter-user-provider-1.0-SNAPSHOT-assembly.tar.gz /
+#ADD ucenter-user-provider-1.0-SNAPSHOT-assembly.tar.gz /
 
 
 
