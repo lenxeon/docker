@@ -23,16 +23,16 @@ RUN echo '================install zsh================'
 RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
 #jdk
 RUN echo '================install jdk================'
-RUN wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk//7u79-b15/jdk-7u79-linux-x64.rpm
+RUN wget https://static-youth.teamillion.com/soft/sun-jdk/jdk-8u151-linux-x64.rpm
 RUN rpm -ivh jdk*.rpm
 
 #tomcat
 RUN echo '================install tomcat-7================'
-RUN wget http://mirrors.tuna.tsinghua.edu.cn/apache/tomcat/tomcat-7/v7.0.78/bin/apache-tomcat-7.0.78.tar.gz\
+RUN wget https://static-youth.teamillion.com/soft/apache/apache-tomcat-7.0.94.tar.gz\
   && mkdir -p /usr/local/server\
-  && tar -zxvf apache-tomcat-7.0.78.tar.gz -C /usr/local/server\
+  && tar -zxvf apache-tomcat-7.0.94.tar.gz -C /usr/local/server\
   && cd /usr/local/server/\
-  && mv apache-tomcat-7.0.78 tomcat7\
+  && mv apache-tomcat-7.0.94 tomcat7\
   && mkdir /app\
   && ln -s /usr/local/server/tomcat7 /app/tomcat7
 
