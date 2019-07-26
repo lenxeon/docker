@@ -19,10 +19,10 @@ services:
     # command: chmod +x /init/*.sh && /init/mysql-init.sh
 
   atlassianjira:
-      image: cptactionhank/atlassian-jira
+      image: dev/centos-jira2
       # restart: always
       ports:
-          - "8888"
+          - "32778:8080"
       depends_on:
         - mysql
       # environment:
