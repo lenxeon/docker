@@ -25,6 +25,7 @@ RUN wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -
 RUN echo '================install jdk================'
 RUN wget https://static-youth.teamillion.com/soft/sun-jdk/jdk-8u151-linux-x64.rpm
 RUN rpm -ivh jdk*.rpm
+RUN rm -f /jdk*.rpm
 
 #tomcat
 RUN echo '================install tomcat-7================'
@@ -40,5 +41,8 @@ ENV CATALINA_HOME /app/tomcat7
 ENV PATH $PATH:$CATALINA_HOME/bin
 
 CMD ["catalina.sh", "run"]
+
+RUN rm -f /apache-tomcat*.gz
+RUN rm -f /usr/local/server/tomcat7/webapps/*
 
 # docker build -t dev/base .
