@@ -2,7 +2,25 @@ version: '2'
 
 services:
   ## MySQL database shared with tomcat containers.
-  mysql:
+  db_uc:
+    image: mysql:5.7
+    # build: ./mysql/
+    restart: always
+    #在主机上绑定端口和docker容器通信
+    ports:
+      - "13306:3306"
+    environment:
+      MYSQL_DATABASE: db_uc
+      MYSQL_USER: apps
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_PASSWORD: Sample09X#
+    volumes:
+      - "./db_uc/data:/var/lib/mysql"
+      - "./db_uc/conf/my.cnf:/etc/my.cnf"
+      - "./db_uc/init:/docker-entrypoint-initdb.d/"
+
+  ## MySQL database shared with tomcat containers.
+  db_project:
     image: mysql:5.7
     # build: ./mysql/
     restart: always
@@ -15,10 +33,63 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       MYSQL_PASSWORD: Sample09X#
     volumes:
-      - "./mysql/data:/var/lib/mysql"
-      - "./mysql/conf/my.cnf:/etc/my.cnf"
-      - "./mysql/init:/docker-entrypoint-initdb.d/"
-    # command: chmod +x /init/*.sh && /init/mysql-init.sh
+      - "./db_project/data:/var/lib/mysql"
+      - "./db_project/conf/my.cnf:/etc/my.cnf"
+      - "./db_project/init:/docker-entrypoint-initdb.d/"
+
+  ## MySQL database shared with tomcat containers.
+  db_plat:
+    image: mysql:5.7
+    # build: ./mysql/
+    restart: always
+    #在主机上绑定端口和docker容器通信
+    ports:
+      - "13306:3306"
+    environment:
+      MYSQL_DATABASE: db_plat
+      MYSQL_USER: apps
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_PASSWORD: Sample09X#
+    volumes:
+      - "./db_plat/data:/var/lib/mysql"
+      - "./db_plat/conf/my.cnf:/etc/my.cnf"
+      - "./db_plat/init:/docker-entrypoint-initdb.d/"
+
+  ## MySQL database shared with tomcat containers.
+  db_charge:
+    image: mysql:5.7
+    # build: ./mysql/
+    restart: always
+    #在主机上绑定端口和docker容器通信
+    ports:
+      - "13306:3306"
+    environment:
+      MYSQL_DATABASE: db_charge
+      MYSQL_USER: apps
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_PASSWORD: Sample09X#
+    volumes:
+      - "./db_charge/data:/var/lib/mysql"
+      - "./db_charge/conf/my.cnf:/etc/my.cnf"
+      - "./db_charge/init:/docker-entrypoint-initdb.d/"
+
+  ## MySQL database shared with tomcat containers.
+  db_quartz:
+    image: mysql:5.7
+    # build: ./mysql/
+    restart: always
+    #在主机上绑定端口和docker容器通信
+    ports:
+      - "13306:3306"
+    environment:
+      MYSQL_DATABASE: db_quartz
+      MYSQL_USER: apps
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_PASSWORD: Sample09X#
+    volumes:
+      - "./db_quartz/data:/var/lib/mysql"
+      - "./db_quartz/conf/my.cnf:/etc/my.cnf"
+      - "./db_quartz/init:/docker-entrypoint-initdb.d/"
 
   ## redis 服务
   redis:
