@@ -1,5 +1,3 @@
-use db_project;
-
 -- MySQL dump 10.13  Distrib 5.7.17, for osx10.11 (x86_64)
 --
 -- Host: mysql    Database: db_project
