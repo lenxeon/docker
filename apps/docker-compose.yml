@@ -12,6 +12,7 @@ services:
     environment:
       MYSQL_DATABASE: db_project
       MYSQL_USER: apps
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
       MYSQL_PASSWORD: Sample09X#
     volumes:
       - "./mysql/data:/var/lib/mysql"
