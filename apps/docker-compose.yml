@@ -53,7 +53,7 @@ services:
   #   command: java -jar /app-commons-provider-1.0-SNAPSHOT/app-commons-provider-1.0-SNAPSHOT.jar
 
   dev-id-web:
-    # image: dev/id
+    build: ./tomcat-node/
     build: ./id-web/
     ports:
       - "18080:8080"
@@ -61,6 +61,7 @@ services:
       - redis
       - memcached
       - zookeeper
+      - mysql
     restart: always
     environment:
       - ZOOKEEPER_HOST=zookeeper:2181
