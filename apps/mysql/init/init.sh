@@ -1,0 +1,1 @@
+mysql -uroot -e 'source /docker-entrypoint-initdb.d/init.sql;';

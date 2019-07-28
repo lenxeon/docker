@@ -1,8 +1,17 @@
+use mysql;
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'Sample09X#';
+flush privileges;
+DROP DATABASE IF EXISTS db_project;
+CREATE DATABASE `db_project` DEFAULT CHARACTER SET utf8mb4 ;
+use db_project;
+
+
+
 -- MySQL dump 10.13  Distrib 5.7.17, for osx10.11 (x86_64)
 --
 -- Host: mysql    Database: db_project
 -- ------------------------------------------------------
--- Server version 5.7.17-log
+-- Server version	5.7.17-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -1016,7 +1025,7 @@ CREATE TABLE `tb_task_001` (
 --
 -- Host: mysql    Database: db_project
 -- ------------------------------------------------------
--- Server version 5.7.17-log
+-- Server version	5.7.17-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -1053,7 +1062,7 @@ UNLOCK TABLES;
 --
 -- Host: mysql    Database: db_project
 -- ------------------------------------------------------
--- Server version 5.7.17-log
+-- Server version	5.7.17-log
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;

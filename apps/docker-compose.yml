@@ -12,9 +12,8 @@ services:
     environment:
       MYSQL_DATABASE: db_project
       MYSQL_USER: root
-      MYSQL_ROOT_PASSWORD: Sample09X#
-      MYSQL_PASSWORD: Sample09X#
-      TEMP_FILE: db_project
+      MYSQL_ROOT_PASSWORD: ''
+      MYSQL_PASSWORD: ''
     volumes:
       - "./mysql/data:/var/lib/mysql"
       - "./mysql/conf/my.cnf:/etc/my.cnf"
