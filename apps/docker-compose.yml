@@ -3,7 +3,7 @@ version: '2'
 services:
   ## MySQL database shared with tomcat containers.
   mysql:
-    image: mysql:latest
+    image: mysql:5.7
     # build: ./mysql/
     restart: always
     #在主机上绑定端口和docker容器通信
