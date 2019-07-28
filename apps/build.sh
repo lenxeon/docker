@@ -9,4 +9,4 @@
 
  git pull
 
- docker-compose up -d
+ docker-compose up 
