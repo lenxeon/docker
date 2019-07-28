@@ -11,8 +11,7 @@ services:
       - "13306:3306"
     environment:
       MYSQL_DATABASE: db_project
-      MYSQL_USER: root
-      MYSQL_ROOT_PASSWORD: Sample09X#
+      MYSQL_USER: apps
       MYSQL_PASSWORD: Sample09X#
     volumes:
       - "./mysql/data:/var/lib/mysql"
