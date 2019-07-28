@@ -3,7 +3,7 @@
 
  docker ps -a | awk -F ' ' '{print $1}' | xargs docker rm 
 
-git reset --hard
+ git reset --hard
 
  git clean -d -f
 
