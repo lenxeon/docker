@@ -3,8 +3,8 @@ version: '2'
 services:
   ## MySQL database shared with tomcat containers.
   mysql:
-    # image: mysql:latest
-    build: ./mysql/
+    image: mysql:latest
+    # build: ./mysql/
     restart: always
     #在主机上绑定端口和docker容器通信
     ports:
@@ -16,7 +16,9 @@ services:
       MYSQL_PASSWORD: Sample09X#
       TEMP_FILE: db_project
     volumes:
-      - ./mysql/sql/:/docker-entrypoint-initdb.d/:Z
+      - "./mysql/data:/var/lib/mysql"
+      - "./mysql/conf/my.cnf:/etc/my.cnf"
+      - "./mysql/init:/docker-entrypoint-initdb.d/"
     # command: chmod +x /init/*.sh && /init/mysql-init.sh
 
   ## redis 服务

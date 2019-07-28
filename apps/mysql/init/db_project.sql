@@ -1,3 +1,11 @@
+use mysql;
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY 'Sample09X#';
+flush privileges;
+CREATE DATABASE `db_project` DEFAULT CHARACTER SET utf8mb4 ;
+use db_project;
+
+
+
 -- MySQL dump 10.13  Distrib 5.7.17, for osx10.11 (x86_64)
 --
 -- Host: mysql    Database: db_project
