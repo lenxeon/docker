@@ -45,4 +45,4 @@ CMD ["catalina.sh", "run"]
 RUN rm -f /apache-tomcat*.gz
 RUN rm -f /usr/local/server/tomcat7/webapps/*
 
-# docker build -t dev/base .
+# docker build -t apps/base .

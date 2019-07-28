@@ -10,7 +10,7 @@ ADD ./init/ /init/
 RUN chmod +x /init/*
 # RUN /init/atlassian-jira-software-7.2.2-x64.bin
 
-# docker build -t dev/base .
+# docker build -t apps/base .
 
 ENV CATALINA_HOME /app/tomcat7
 ENV PATH $PATH:$CATALINA_HOME/bin

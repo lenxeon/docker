@@ -1,4 +1,4 @@
-FROM dev/base
+FROM apps/base
 
 MAINTAINER workin.me lenxeon lenxeon@163.com
 
