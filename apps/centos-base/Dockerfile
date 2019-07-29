@@ -43,6 +43,6 @@ ENV PATH $PATH:$CATALINA_HOME/bin
 CMD ["catalina.sh", "run"]
 
 RUN rm -f /apache-tomcat*.gz
-RUN rm -f /usr/local/server/tomcat7/webapps/*
+RUN rm -r -f /usr/local/server/tomcat7/webapps/*
 
 # docker build -t apps/base .

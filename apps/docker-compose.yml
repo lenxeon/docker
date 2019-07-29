@@ -158,11 +158,7 @@ services:
       - redis
       - memcached
       - zookeeper
-      - db_uc
-      - db_plat
-      - db_project
-      - db_charge
-      - db_quartz
+      - mysql
     restart: always
     environment:
       - ZOOKEEPER_HOST=zookeeper:2181
