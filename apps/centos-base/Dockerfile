@@ -40,9 +40,9 @@ RUN wget https://static-youth.teamillion.com/soft/apache/apache-tomcat-7.0.94.ta
 ENV CATALINA_HOME /app/tomcat7
 ENV PATH $PATH:$CATALINA_HOME/bin
 
-# CMD ["catalina.sh", "run"]
-
 RUN rm -f /apache-tomcat*.gz
 RUN rm -r -f /usr/local/server/tomcat7/webapps/*
+
+CMD ["catalina.sh", "run"]
 
 # docker build -t apps/base .
