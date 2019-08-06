@@ -9,4 +9,6 @@
 
  git pull
 
+ docker build -t apps/base centos-base
+
  docker-compose up --build
