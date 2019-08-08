@@ -1,6 +1,10 @@
 let error = true
 
 let res = [
+  user admin,
+  db.auth('root', 'Sample09X'),
+  use ftask,
+  db.createUser({user:'root',pwd:'Sample09X#',roles: [{role:'dbOwner',db:'ftask'}]}),
   db.container.drop(),
   db.container.drop(),
   db.container.createIndex({ myfield: 1 }, { unique: true }),
