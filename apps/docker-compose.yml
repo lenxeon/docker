@@ -98,11 +98,11 @@ services:
     image: mongo:3.6
     restart: always
     #在主机上绑定端口和docker容器通信
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: Sample09X#
-    volumes:
-      - ./mongodb/init.js:/docker-entrypoint-initdb.d/init.js:ro
+    #environment:
+    #  MONGO_INITDB_ROOT_USERNAME: root
+    #  MONGO_INITDB_ROOT_PASSWORD: Sample09X#
+    #volumes:
+    #  - ./mongodb/init.js:/docker-entrypoint-initdb.d/init.js:ro
 
 
   ## MySQL database shared with tomcat containers.
