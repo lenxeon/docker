@@ -28,18 +28,6 @@ RUN rpm -ivh jdk*.rpm
 RUN rm -f /jdk*.rpm
 
 
-#mongodb
-RUN wget http://static-youth.teamillion.com/soft/yugu/mongodb-linux-x86_64-3.6.13.tgz\
-  && mkdir -p /usr/local/server\
-  && tar -zxvf mongodb-linux-x86_64-3.6.13.tgz -C /usr/local/server\
-  && cd /usr/local/server/\
-  && mv mongodb-linux-x86_64-3.6.13 mongodb\
-  && mkdir -p /usr/local/server/mongodb/data\
-  && mkdir -p /usr/local/server/mongodb/logs\
-
-COPY init.js /docker-entrypoint-initdb.d/
-
-
 #tomcat
 RUN echo '================install tomcat-7================'
 RUN wget http://static-youth.teamillion.com/soft/apache/apache-tomcat-7.0.94.tar.gz\
