@@ -97,6 +97,8 @@ services:
   mongodb:
     image: mongo:3.6
     restart: always
+    ports:
+      - "17017:27017"
     #在主机上绑定端口和docker容器通信
     #environment:
     #  MONGO_INITDB_ROOT_USERNAME: root
