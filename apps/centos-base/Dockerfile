@@ -23,14 +23,14 @@ RUN echo '================install zsh================'
 RUN wget http://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
 #jdk
 RUN echo '================install jdk================'
-RUN wget http://static-youth.teamillion.com/soft/sun-jdk/jdk-8u151-linux-x64.rpm
+RUN wget http://static-youth.teamillion.com/soft/sun-jdk/jdk-8u151-linux-x64.rpm --no-check-certificate
 RUN rpm -ivh jdk*.rpm
 RUN rm -f /jdk*.rpm
 
 
 #tomcat
 RUN echo '================install tomcat-7================'
-RUN wget http://static-youth.teamillion.com/soft/apache/apache-tomcat-7.0.94.tar.gz\
+RUN wget http://static-youth.teamillion.com/soft/apache/apache-tomcat-7.0.94.tar.gz --no-check-certificate\
   && mkdir -p /usr/local/server\
   && tar -zxvf apache-tomcat-7.0.94.tar.gz -C /usr/local/server\
   && cd /usr/local/server/\
