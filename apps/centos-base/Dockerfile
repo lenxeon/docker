@@ -1,4 +1,4 @@
-FROM centos:centos6.8
+FROM centos:centos7.4
 
 MAINTAINER workin.me lenxeon lenxeon@163.com
 
