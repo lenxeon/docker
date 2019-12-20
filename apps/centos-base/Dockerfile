@@ -31,7 +31,7 @@ ADD apache-tomcat-7.0.94.tar.gz .
 
 #jdk
 # RUN tar -zxvf jdk1.8.0_121.tar -C /usr/local
-RUN mv /usr/local/jdk1.8.0_121 /usr/local/jdk1.8
+RUN mv local/jdk1.8.0_121 /usr/local/jdk1.8
 
 RUN echo 'JAVA_HOME=/usr/local/jdk1.8' >> /etc/profile
 RUN echo 'CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar' >> /etc/profile
@@ -42,7 +42,7 @@ RUN source /etc/profile
 RUN echo '================install tomcat-7================'
 
 RUN mkdir -p /usr/local/server\
-  && mv /apache-tomcat-7.0.94 -C /usr/local/server\
+  && mv apache-tomcat-7.0.94 -C /usr/local/server\
   && cd /usr/local/server/\
   && mv apache-tomcat-7.0.94 tomcat7\
   && mkdir /app\
