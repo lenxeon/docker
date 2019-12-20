@@ -6,7 +6,8 @@ MAINTAINER workin.me lenxeon lenxeon@163.com
 EXPOSE 22 80 443 8080
 
 RUN echo '================install basic cmd================'
-RUN yum -y install yum-utils
+RUN yum -y install yum-utils NetworkManager NetworkManager-tui
+
 RUN yum install -y sudo
 RUN yum install -y tar
 #wget
