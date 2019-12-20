@@ -178,7 +178,7 @@ services:
       - ZOOKEEPER_VERSION=1.0.002
     # volumes:
     #  - "./tomcat-node/init:/init"
-    command: "cd /usr/local/server/canal.deployer/bin/ && ./restart.sh && sh /usr/local/server/tomcat7/bin/catalina.sh run"
+    command: "sh /init.sh"
 
 
   # tomcat_01:

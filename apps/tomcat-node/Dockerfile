@@ -10,6 +10,7 @@ ENV PATH $PATH:$CATALINA_HOME/bin
 
 ADD apps-web.war /usr/local/server/tomcat7/webapps
 ADD canal.deployer.tar /usr/local/server
+ADD init/init.sh /
 
 EXPOSE 8080
 # RUN tail -f /*
