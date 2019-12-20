@@ -162,7 +162,7 @@ services:
   #   command: java -jar /app-commons-provider-1.0-SNAPSHOT/app-commons-provider-1.0-SNAPSHOT.jar
 
   dev-id-web:
-    image: apps/base
+    image: apps/tomcat
     ports:
       - "18080:8080"
     depends_on:
