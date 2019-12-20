@@ -178,7 +178,7 @@ services:
       - ZOOKEEPER_VERSION=1.0.002
     volumes:
       - "./tomcat-node/init:/init"
-    command: "chmod +x /init/*.sh && /init/init.sh"
+    command: "chmod +x /init/init.sh && /init/init.sh"
 
 
   # tomcat_01:
