@@ -2,6 +2,9 @@ FROM apps/base
 
 MAINTAINER workin.me lenxeon lenxeon@163.com
 
+ENV JAVA_HOME /usr/local/jdk1.8/
+ENV PATH $PATH:$JAVA_HOME/bin
+
 ENV CATALINA_HOME /usr/local/server/tomcat7
 ENV PATH $PATH:$CATALINA_HOME/bin
 
