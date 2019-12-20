@@ -11,8 +11,8 @@ git clean -d -f
 
 git pull
 
-wget  --no-check-certificate https://static-youth.teamillion.com/soft/sun-jdk/jdk1.8.0_121.tar
-wget  --no-check-certificate https://static-youth.teamillion.com/soft/apache/apache-tomcat-7.0.94.tar
+wget https://static-youth.teamillion.com/soft/sun-jdk/jdk1.8.0_121.tar?t=`date -d "$currentTime" +%s`  -O ./jdk1.8.0_121.tar
+wget https://static-youth.teamillion.com/soft/apache/apache-tomcat-7.0.94.tar?t=`date -d "$currentTime" +%s`  -O ./apache-tomcat-7.0.94.tar
 wget http://static-youth.teamillion.com/soft/apps/apps-web.war?t=`date -d "$currentTime" +%s` -O ./apps-web.war
 
 # 停止服务
