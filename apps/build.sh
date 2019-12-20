@@ -1,14 +1,26 @@
- 
- docker ps -a | awk -F ' ' '{print $1}' | xargs docker stop 
 
- docker ps -a | awk -F ' ' '{print $1}' | xargs docker rm 
 
- git reset --hard
 
- git clean -d -f
+rm /jdk1.8.0_121.tar
+wget -P / --no-check-certificate https://static-youth.teamillion.com/soft/sun-jdk/jdk1.8.0_121.tar
+rm /apache-tomcat-7.0.94.tar.gz
+wget -P / --no-check-certificate https://static-youth.teamillion.com/soft/apache/apache-tomcat-7.0.94.tar.gz
 
- git pull
 
- docker build -t apps/base centos-base
+# 停止服务
+docker ps -a | awk -F ' ' '{print $1}' | xargs docker stop 
 
- docker-compose up --build
+#删除容器 
+docker ps -a | awk -F ' ' '{print $1}' | xargs docker rm
+
+
+
+git reset --hard
+
+git clean -d -f
+
+git pull
+
+docker build -t apps/base centos-base
+
+docker-compose up --build

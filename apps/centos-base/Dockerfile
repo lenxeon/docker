@@ -1,4 +1,4 @@
-FROM centos:latest
+FROM centos:centos6.8
 
 MAINTAINER workin.me lenxeon lenxeon@163.com
 
@@ -24,16 +24,25 @@ RUN echo '================install zsh================'
 RUN wget http://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
 #jdk
 RUN echo '================install jdk================'
-RUN wget --no-check-certificate https://static-youth.teamillion.com/soft/sun-jdk/jdk-8u151-linux-x64.rpm
-RUN rpm -ivh jdk*.rpm
-RUN rm -f /jdk*.rpm
 
+ADD /jdk1.8.0_121.tar /
+ADD /apache-tomcat-7.0.94.tar.gz /
+
+
+#jdk
+RUN tar -zxvf jdk1.8.0_121.tar -C /usr/local
+RUN mv /usr/local/jdk1.8.0_121 /usr/local/jdk1.8
+
+RUN echo 'JAVA_HOME=/usr/local/jdk1.8' >> /etc/profile
+RUN echo 'CLASSPATH=.:$JAVA_HOME/jre/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar' >> /etc/profile
+RUN echo 'PATH=$JAVA_HOME/bin:$PATH' >> /etc/profile
+RUN source /etc/profile
 
 #tomcat
 RUN echo '================install tomcat-7================'
-RUN wget  --no-check-certificate https://static-youth.teamillion.com/soft/apache/apache-tomcat-7.0.94.tar.gz\
-  && mkdir -p /usr/local/server\
-  && tar -zxvf apache-tomcat-7.0.94.tar.gz -C /usr/local/server\
+
+RUN mkdir -p /usr/local/server\
+  && tar -zxvf /apache-tomcat-7.0.94.tar.gz -C /usr/local/server\
   && cd /usr/local/server/\
   && mv apache-tomcat-7.0.94 tomcat7\
   && mkdir /app\
