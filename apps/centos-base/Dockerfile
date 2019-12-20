@@ -26,7 +26,7 @@ RUN wget http://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O
 RUN echo '================install jdk================'
 
 ADD jdk1.8.0_121.tar .
-ADD apache-tomcat-7.0.94.tar.gz .
+ADD apache-tomcat-7.0.94.tar .
 
 
 #jdk
@@ -42,7 +42,7 @@ RUN source /etc/profile
 RUN echo '================install tomcat-7================'
 
 RUN mkdir -p /usr/local/server\
-  && mv apache-tomcat-7.0.94 -C /usr/local/server\
+  && mv apache-tomcat-7.0.94 /usr/local/server\
   && cd /usr/local/server/\
   && mv apache-tomcat-7.0.94 tomcat7\
   && mkdir /app\

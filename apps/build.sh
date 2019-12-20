@@ -2,7 +2,7 @@
 
 
 rm jdk1.8.0_121.tar
-rm apache-tomcat-7.0.94.tar.gz
+rm apache-tomcat-7.0.94.tar
 
 git reset --hard
 
@@ -11,7 +11,7 @@ git clean -d -f
 git pull
 
 wget  --no-check-certificate https://static-youth.teamillion.com/soft/sun-jdk/jdk1.8.0_121.tar
-wget  --no-check-certificate https://static-youth.teamillion.com/soft/apache/apache-tomcat-7.0.94.tar.gz
+wget  --no-check-certificate https://static-youth.teamillion.com/soft/apache/apache-tomcat-7.0.94.tar
 
 
 # 停止服务
