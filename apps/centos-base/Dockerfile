@@ -25,12 +25,12 @@ RUN wget http://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O
 #jdk
 RUN echo '================install jdk================'
 
-ADD /jdk1.8.0_121.tar /
-ADD /apache-tomcat-7.0.94.tar.gz /
+ADD jdk1.8.0_121.tar .
+ADD apache-tomcat-7.0.94.tar.gz .
 
 
 #jdk
-RUN tar -zxvf jdk1.8.0_121.tar -C /usr/local
+# RUN tar -zxvf jdk1.8.0_121.tar -C /usr/local
 RUN mv /usr/local/jdk1.8.0_121 /usr/local/jdk1.8
 
 RUN echo 'JAVA_HOME=/usr/local/jdk1.8' >> /etc/profile
@@ -42,7 +42,7 @@ RUN source /etc/profile
 RUN echo '================install tomcat-7================'
 
 RUN mkdir -p /usr/local/server\
-  && tar -zxvf /apache-tomcat-7.0.94.tar.gz -C /usr/local/server\
+  && mv /apache-tomcat-7.0.94 -C /usr/local/server\
   && cd /usr/local/server/\
   && mv apache-tomcat-7.0.94 tomcat7\
   && mkdir /app\

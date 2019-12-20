@@ -13,7 +13,8 @@ docker ps -a | awk -F ' ' '{print $1}' | xargs docker stop
 #删除容器 
 docker ps -a | awk -F ' ' '{print $1}' | xargs docker rm
 
-
+#删除错误的镜像
+docker images | grep none  | awk -F ' ' '{print $3}' | xargs docker rmi
 
 git reset --hard
 
