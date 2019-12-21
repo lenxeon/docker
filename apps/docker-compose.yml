@@ -123,7 +123,7 @@ services:
     volumes:
       - "./mysql/data:/var/lib/mysql"
       - "./mysql/conf/my.cnf:/etc/my.cnf"
-      - "./mysql/init:/docker-entrypoint-initdb.d/"
+      - "./mysql/init:/"
 
 
   ## redis 服务
