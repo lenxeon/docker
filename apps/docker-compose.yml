@@ -118,7 +118,6 @@ services:
     environment:
       MYSQL_DATABASE: db_project
       MYSQL_USER: root
-      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       MYSQL_PASSWORD: Sample09X#
     volumes:
       - "./mysql/data:/var/lib/mysql"
