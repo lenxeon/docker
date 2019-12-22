@@ -25,13 +25,12 @@ RUN wget http://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O
 
 
 #mysql
-# RUN echo '================install mysql================'
-# RUN yum install -y mysql-server
-# RUN service mysqld start > mysql.log 
-# RUN sleep 30s
-# RUN cat mysql.log | grep new-password | sed 's/new-password/Sample09X#/' > mysql.sh
-# RUN chmod +x mysql.sh
-# RUN sh mysql.sh
+RUN echo '================install mysql================'
+RUN yum install -y mysql-server
+RUN service mysqld start > mysql.log
+RUN cat mysql.log  | grep -v 'h' | grep 'password' | sed 's/new-password/Sample09X#/' > mysql.sh
+RUN chmod +x mysql.sh
+RUN ./mysql.sh
 
 
 #jdk
