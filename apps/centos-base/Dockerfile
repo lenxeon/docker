@@ -26,9 +26,10 @@ RUN wget http://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O
 RUN echo '================install mysql================'
 RUN yum install -y mysql-server
 RUN service mysqld restart > mysql.log 
+RUN sleep 30s
 RUN cat mysql.log | grep new-password | sed 's/new-password/Sample09X#/' > mysql.sh
-RUN chmod +x mysql.sh\
-    && sh mysql.sh
+RUN chmod +x mysql.sh
+RUN sh mysql.sh
 
 
 #jdk
