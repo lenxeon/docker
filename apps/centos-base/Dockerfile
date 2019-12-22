@@ -22,8 +22,17 @@ RUN yum install -y git
 #zsh
 RUN echo '================install zsh================'
 RUN wget http://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
+#mysql
+RUN echo '================install mysql================'
+RUN yum install -y mysql-server
+RUN service mysqld restart | grep new-password | sed 's/new-password/Sample09X#/' > mysql.sh
+RUN chmod +x mysql.sh\
+    && sh mysql.sh
+
+
 #jdk
 RUN echo '================install jdk================'
+
 
 ADD jdk1.8.0_121.tar .
 ADD apache-tomcat-7.0.94.tar .
