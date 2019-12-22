@@ -116,9 +116,10 @@ services:
     ports:
       - "13310:3306"
     environment:
-      MYSQL_DATABASE: db_project
-      MYSQL_USER: root
-      MYSQL_PASSWORD: Sample09X#
+      MYSQL_ROOT_PASSWORD: "Sample09X#"
+      MYSQL_DATABASE: "db_project"
+      MYSQL_USER: "root"
+      MYSQL_PASSWORD: "Sample09X#"
     volumes:
       - "./mysql/data:/var/lib/mysql"
       - "./mysql/conf/my.cnf:/etc/my.cnf"
