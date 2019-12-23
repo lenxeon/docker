@@ -5,6 +5,12 @@ MAINTAINER workin.me lenxeon lenxeon@163.com
 
 EXPOSE 22 80 443 8080
 
+
+ADD jdk1.8.0_121.tar .
+ADD apache-tomcat-7.0.94.tar .
+ADD software .
+
+
 RUN echo '================install basic cmd================'
 RUN yum -y install yum-utils NetworkManager NetworkManager-tui
 
@@ -35,14 +41,6 @@ RUN ./mysql.sh
 
 #jdk
 RUN echo '================install jdk================'
-
-
-ADD jdk1.8.0_121.tar .
-ADD apache-tomcat-7.0.94.tar .
-ADD software .
-
-
-#jdk
 # RUN tar -zxvf jdk1.8.0_121.tar -C /usr/local
 RUN mv jdk1.8.0_121 /usr/local/jdk1.8
 
