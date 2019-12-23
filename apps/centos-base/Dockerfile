@@ -39,7 +39,7 @@ RUN echo '================install jdk================'
 
 ADD jdk1.8.0_121.tar .
 ADD apache-tomcat-7.0.94.tar .
-ADD software
+ADD software .
 
 
 #jdk
